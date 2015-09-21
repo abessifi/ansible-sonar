@@ -1,7 +1,9 @@
 ---
 
+# Create a 'sonar' db and user if they didn't exist.
+
 - name: postgresql | Create sonar postgresql user
-  postgresql_user: 
+  postgresql_user:
      name="{{sonar_jdbc_user}}"
      password="{{sonar_jdbc_pass}}"
   sudo_user: "{{ sonar_postgres_sudo_user }}"
@@ -9,7 +11,7 @@
   tags: postgresql_server
 
 - name: postgresql | Create sonar postgresql database
-  postgresql_db: 
+  postgresql_db:
      name="{{sonar_jdbc_db}}"
      owner="{{sonar_jdbc_user}}"
      encoding='UTF-8'
@@ -18,4 +20,4 @@
      template='template0'
   sudo_user: "{{ sonar_postgres_sudo_user }}"
   notify: restart sonar
-  tags: postgresql_server    
+  tags: postgresql_server 
